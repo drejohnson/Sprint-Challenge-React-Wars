@@ -4,7 +4,9 @@ import axios from 'axios';
 
 import Header from './components/Header';
 import Card from './components/Card';
+import Search from './components/Search';
 
+import getCharacters from './util/getCharacters';
 import GlobalStyle from './style/Global';
 
 const Wrapper = styled.div`
@@ -15,6 +17,7 @@ const Wrapper = styled.div`
   height: 100vh;
   color: white;
   padding: 20px;
+  margin-top: 5rem;
 `;
 
 const App = () => {
@@ -26,20 +29,36 @@ const App = () => {
   // sync up with, if any.
 
   const [data, setData] = useState(null);
+  const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    new Promise((resolve, reject) => {
+      getCharacters(`https://swapi.co/api/people/`, [], resolve, reject);
+    }).then(response => {
+      console.log(response.slice(0, 10));
+    });
+  }, []);
 
   useEffect(() => {
     axios
       .get(`https://swapi.co/api/people/`, {
         crossorigin: true,
       })
-      .then(response => setData(response.data));
+      .then(response => {
+        setData(response.data);
+      });
   }, []);
+
+  function handleChange(e) {
+    setQuery(e.target.value);
+  }
 
   return (
     <Wrapper>
       <GlobalStyle />
       <Header />
-      <Card data={data} />
+      <Search onChange={handleChange} query={query} />
+      <Card query={query} data={data} />
     </Wrapper>
   );
 };

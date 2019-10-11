@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     color: #111;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Lato', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -33,7 +33,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
   p {
-    font-family: 'EB Garamond', serif;
     padding: 0;
     margin: 0;
   }
